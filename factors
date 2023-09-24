@@ -1,2 +1,2 @@
 #!/bin/bash
-./factors.py $1
+./factors2.py $1
