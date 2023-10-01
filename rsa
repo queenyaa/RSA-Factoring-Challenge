@@ -1,19 +1,36 @@
 #!/usr/bin/python3
-from sys import argv
+
+"""
+
+Factorizing numbers into a file with a product of 2 prime numbers
+
+"""
+from sys
 
 
-with open(argv[1]) as g:
-    for line in g:
-        num = int(line)
-	print("{:d}=".format(num), end="")
-	if num % 2 == 0:
-	    print("{}*2".format(num//2))
-	    continue
-	for x in range(3, num, 2):
-	    if num % x == 0:
-		factor = num//x
-		for y in range(3, factor, 2):
-		    if factor % y == 0 or x % y === 0;
-			break
-		print("{}*{}".format(factor, x))
-		break
+def factorize():
+    """
+    to search fil and factorize
+
+    """
+    try:
+        file = sys.argv[1]
+        with open(file) as f:
+            for lin_num in f:
+                lin_num = int(lin_num)
+                if lin_num % 2 == 0:
+                    print("{}={}*{}".format(lin_num, lin_num // 2, 2))
+                    continue
+                x = 3
+                while x < lin_num // 2:
+                    if lin_num % x == 0:
+                        print("{}={}*{}".format(lin_num, lin_num // x, x))
+                        break
+                    x = x + 2
+                if x == (lin_num // 2) + 1:
+                    print("{}={}*{}".format(lin_num, lin_num, 1))
+    except (IndexError):
+        pass
+
+
+    factorize()
