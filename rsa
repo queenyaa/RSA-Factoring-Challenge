@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 from sys import argv
 
+
 with open(argv[1]) as g:
     for line in g:
-        num = int(lyn)
+        num = int(line)
 	print("{:d}=".format(num), end="")
 	if num % 2 == 0:
 	    print("{}*2".format(num//2))
