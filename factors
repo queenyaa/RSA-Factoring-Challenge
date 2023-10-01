@@ -3,13 +3,14 @@
 from sys import argv
 from math import sqrt
 
+
 def op_rdfile(file_name):
 
     with open(file_name, "r", encoding="utf-8") as file:
-        l = file.readlines()
+        lines = file.readlines()
     facts = []
-    for lin in l:
-        facts.append(int(lin))
+    for line in lines:
+        facts.append(int(line))
     return (facts)
 
 
@@ -20,10 +21,12 @@ def find_mul(y):
             print("{}={}*{}".format(y, (y // x), x))
             break
 
+
 def fact_l(hv):
 
     for x in hv:
         find_mul(x)
+
 
 if len(argv) == 2:
     fact_l(op_rdfile(argv[1]))
