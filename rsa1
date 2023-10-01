@@ -1,27 +1,22 @@
 #!/usr/bin/python3
 
-"""
-
-Factorizing numbers into a file with a product of 2 prime numbers
-
-"""
 import sys
 import random
 
-
-def iprime(n, k=5):
+def is_prime(n, k=5):
     if n <= 1:
         return False
-    if n <= 2:
+    if n <= 3:
         return True
 
     # Miller-Rabin primality test
-    def mil_rab_test(d, n):
+    def miller_rabin_test(d, n):
         a = random.randint(2, n - 2)
         x = pow(a, d, n)
 
         if x == 1 or x == n - 1:
             return True
+
         while d != n - 1:
             x = (x * x) % n
             d *= 2
@@ -33,41 +28,36 @@ def iprime(n, k=5):
 
         return False
 
-    # Perform the test multiple times for increase accuracy
+    # Perform the test multiple times for increased accuracy
     for _ in range(k):
         d = n - 1
         while d % 2 == 0:
             d //= 2
 
-        if not mil_rab_test(d, n):
+        if not miller_rabin_test(d, n):
             return False
 
     return True
 
-
-def factorize(n):
-
+def factorize(number):
     p, q = 0, 0
-    for p in range(2, n):
-        if n % p == 0 and iprime(p):
-            q = n // p
-            return (p, q)
+    for p in range(2, number):
+        if number % p == 0 and is_prime(p):
+            q = number // p
+            return p, q
     return None, None
-
 
 def main(input_file):
     try:
         with open(input_file, 'r') as file:
-            # for line in file:
-            num = int(file.read().strip())
-            p, q = factorize(num)
+            number = int(file.read().strip())
+            p, q = factorize(number)
             if p is not None and q is not None:
-                print(f"{num}={p}*{q}")
+                print(f"{number}={p}*{q}")
             else:
-                print(f"No two prime factors found for {num}.")
+                print(f"No two prime factors found for {number}.")
     except FileNotFoundError:
         print(f"File '{input_file}' not found.")
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -76,3 +66,4 @@ if __name__ == "__main__":
 
     input_file = sys.argv[1]
     main(input_file)
+
