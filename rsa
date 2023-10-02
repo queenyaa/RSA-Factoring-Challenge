@@ -62,7 +62,7 @@ def main(input_file):
             num = int(file.read().strip())
             p, q = factorize(num)
             if p is not None and q is not None:
-                print(f"{num}={p}*{q}")
+                print(f"{num}={q}*{p}")
             else:
                 print(f"No two prime factors found for {num}.")
     except FileNotFoundError:
